@@ -10,10 +10,11 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    Username: <input type="text" name="username"/><br>
-    Password: <input type="text" name="password"/><br>
-    {% if exceptions.empty_field_exc == True %} <p> one of the fields is empty! </p><br> {% endif %}
-    {% if exceptions.wrong_fields_exc == True %} <p> username or password are wrong! </p><br> {% endif %}
+    {{ form }}
+    {% if exceptions.auth_failed_exc == True %}
+    <p>failed to authenticate user</p>
+    {% endif %}
+
     <input type="submit" value="Post"/>
 </form>
 

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 # Create your views here.
 from django.views.decorators.csrf import csrf_protect
 
+from user.forms import *
+
 
 def login_page_redirect(request):
     return redirect('login_page')
@@ -12,45 +14,42 @@ def login_page_redirect(request):
 
 @csrf_protect
 def signup_page(request):
-    create = True
-    exceptions = {'taken_username_exc': False, 'empty_field_exc': False, 'confirm_password_exc': False, }
-    context = {'exceptions': exceptions}
+    exceptions = {'taken_username_exc': False}
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        confirm = request.POST.get('confirm')
-        if not (username and password and confirm):
-            exceptions['empty_field_exc'] = True
-            create = False
-        if not (password == confirm):
-            exceptions['confirm_password_exc'] = True
-            create = False
-        if User.objects.filter(username=username):
-            exceptions['taken_username_exc'] = True
-            create = False
-        if create:
-            user = User.objects.create_user(username=username, password=password)
-            user.save()
-            return redirect('login_page')
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            email = form.cleaned_data['email']
+            if not User.objects.filter(username=email):  # change to get
+                user = User.objects.create_user(username=email, password=password)  # EMAIL IS USED AS A USERNAME!!!
+                user.save()
+                return redirect('login_page')
+            else:
+                exceptions['taken_username_exc'] = True
+    else:
+        form = SignupForm()
+    context = {'form': form, 'exceptions': exceptions}
     return render(request, 'user/signup.html', context)
 
 
 @csrf_protect
 def login_page(request):
-    exceptions = {'filled_fields_exc': False, 'wrong_fields_exc': False, }
-    context = {'exceptions': exceptions}
+    exceptions = {'auth_failed_exc': False}
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home_page', username)
-        else:
-            if not (username and password):
-                exceptions['empty_field_exc'] = True
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = authenticate(username=email, password=password)
+            if user is not None:
+                login(request, user=user)
+                return redirect('home_page', user.id)
             else:
-                exceptions['wrong_fields_exc'] = True
+                exceptions['auth_failed_exc'] = True
+    else:
+        form = LoginForm()
+    context = {'form': form, 'exceptions': exceptions}
     return render(request, 'user/login.html', context)
 
 

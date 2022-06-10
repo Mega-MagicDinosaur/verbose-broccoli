@@ -10,13 +10,10 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    Username: <input type="text" name="username"/><br/>
-    Password: <input type="text" name="password"/><br/>
-    Confirm: <input type="text" name="confirm"/><br/>
-
-    {% if exceptions.empty_field_exc == True %} <p> one of the fields is empty! </p><br> {% endif %}
-    {% if exceptions.confirm_password_exc == True %} <p> password is different from confirmation! </p><br> {% endif %}
-    {% if exceptions.taken_username_exc == True %} <p> username is already taken! </p><br> {% endif %}
+    {{ form }}
+    {% if exceptions.taken_username_exc == True %}
+    <p>email already has an account!</p>
+    {% endif %}
 
     <input type="submit" value="Post"/>
 </form>

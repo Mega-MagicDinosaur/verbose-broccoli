@@ -9,7 +9,7 @@ def index_page(request):
 
 
 def home_page(request, pk):
-    user = User.objects.get(username=pk)
+    user = User.objects.get(id=pk)
     context = {
         'user': user
     }
