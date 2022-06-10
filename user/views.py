@@ -13,46 +13,65 @@ def login_page_redirect(request):
 
 
 @csrf_protect
-def signup_page(request):
-    exceptions = {'taken_username_exc': False}
+def signup_page_1(request):
+    exceptions = {'taken_username_exc': False}  # use this in 2 and 3 later
+    initial = {'email': request.session.get('email', None)}
+    form = SignupForm1(request.POST or None, initial=initial)
     if request.method == 'POST':
-        form = SignupForm(request.POST)
         if form.is_valid():
-            # GET ALL FIELDS
-            password = form.cleaned_data['password']
             email = form.cleaned_data['email']
-
-            # CREATE NEW USER
-            if not User.objects.filter(username=email):  # change to get
-                user = User.objects.create_user(username=email, password=password)  # EMAIL IS USED AS A USERNAME!!!
-                user.profile.name = form.cleaned_data['name']
-                user.profile.surname = form.cleaned_data['surname']
-                user.profile.username = form.cleaned_data['username']
-                user.profile.prefix = form.cleaned_data['prefix']
-                user.profile.number = form.cleaned_data['number']
-                user.profile.linkedin_user = form.cleaned_data['linkedin_user']
-                user.profile.company = form.cleaned_data['company']
-                user.profile.department = form.cleaned_data['department']
-                user.profile.job_title = form.cleaned_data['job_title']
-
-                user.profile.type_of_code = form.cleaned_data['type_of_code']
-                user.profile.code = form.cleaned_data['code']
-                user.profile.address = form.cleaned_data['address']
-                user.profile.turnover = form.cleaned_data['turnover']
-                user.profile.employees = form.cleaned_data['employees']
-                user.profile.products = form.cleaned_data['products']
-                user.profile.sectors = form.cleaned_data['sectors']
-                user.profile.BOM_position = form.cleaned_data['BOM_position']
-                user.profile.linkedin_company = form.cleaned_data['linkedin_company']
-                user.profile.email_company = form.cleaned_data['email_company']
-
-                user.profile.save()
-                return redirect('login_page')
+            password = form.cleaned_data['password']
+            request.session['email'] = email
+            if not User.objects.filter(username=email):  # change to get eventually
+                user = User.objects.create_user(username=email, password=password)  # EMAIL IS USED AS A USERNAME!!
+                return redirect('signup_page_2')
             else:
                 exceptions['taken_username_exc'] = True
-    else:
-        form = SignupForm()
     context = {'form': form, 'exceptions': exceptions}
+    return render(request, 'user/signup.html', context)
+
+
+def signup_page_2(request):
+    form = SignupForm2(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = User.objects.get(username=request.session['email'])
+            user.profile.name = form.cleaned_data['name']
+            user.profile.surname = form.cleaned_data['surname']
+            user.profile.username = form.cleaned_data['username']
+            user.profile.prefix = form.cleaned_data['prefix']
+            user.profile.number = form.cleaned_data['number']
+            user.profile.linkedin_user = form.cleaned_data['linkedin_user']
+            user.profile.company = form.cleaned_data['company']
+            user.profile.department = form.cleaned_data['department']
+            user.profile.job_title = form.cleaned_data['job_title']
+            user.profile.save()
+            return redirect('signup_page_3')
+
+    context = {'form': form}
+    return render(request, 'user/signup.html', context)
+
+
+def signup_page_3(request):
+    exceptions = {'taken_username_exc': False}
+    form = SignupForm3(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = User.objects.get(username=request.session['email'])
+            user.companyprofile.type_of_code = form.cleaned_data['type_of_code']
+            user.companyprofile.code = form.cleaned_data['code']
+            user.companyprofile.address = form.cleaned_data['address']
+            user.companyprofile.turnover = form.cleaned_data['turnover']
+            user.companyprofile.employees = form.cleaned_data['employees']
+            user.companyprofile.products = form.cleaned_data['products']
+            user.companyprofile.sectors = form.cleaned_data['sectors']
+            user.companyprofile.BOM_position = form.cleaned_data['BOM_position']
+            user.companyprofile.linkedin_company = form.cleaned_data['linkedin_company']
+            user.companyprofile.email_company = form.cleaned_data['email_company']
+            user.companyprofile.save()
+            return redirect('login_page')
+
+    context = {'form': form}
     return render(request, 'user/signup.html', context)
 
 

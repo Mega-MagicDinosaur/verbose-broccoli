@@ -12,11 +12,17 @@ class LoginForm(forms.Form):
         return cd
 
 
-class SignupForm(forms.Form):
+class SignupForm1(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
-    policy_agreement_check = forms.BooleanField()
 
+    def clean(self):
+        cd = self.cleaned_data
+        #  error checking here
+        return cd
+
+
+class SignupForm2(forms.Form):
     name = forms.CharField()
     surname = forms.CharField()
     username = forms.CharField()
@@ -26,7 +32,15 @@ class SignupForm(forms.Form):
     company = forms.CharField()
     department = forms.ChoiceField(choices=[('1', 'abc')])
     job_title = forms.CharField()
+    policy_agreement_check = forms.BooleanField()
 
+    def clean(self):
+        cd = self.cleaned_data
+        #  error checking here
+        return cd
+
+
+class SignupForm3(forms.Form):
     type_of_code = forms.ChoiceField(choices=[('1', 'abc')])
     code = forms.IntegerField()
     address = forms.CharField()
@@ -37,6 +51,7 @@ class SignupForm(forms.Form):
     BOM_position = forms.CharField()
     linkedin_company = forms.URLField()
     email_company = forms.EmailField()
+    policy_agreement_check = forms.BooleanField()
 
     def clean(self):
         cd = self.cleaned_data
