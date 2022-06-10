@@ -8,23 +8,28 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     # USER DATA
-    telephone_number = models.IntegerField(null=True)
-    linkedin_profile = models.URLField()
+    name = models.CharField(max_length=255)
+    surname = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    prefix = models.IntegerField(default=0)
+    number = models.IntegerField(default=0)
+    linkedin_user = models.URLField()
     company = models.CharField(max_length=255)
-    # select -> department =
+    department = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
 
-    # COMPANY DATA
-    # select type_code = (ateco, nace)
-    code = models.IntegerField(null=True)
-    company_address = models.CharField(max_length=255)
-    # select turnover = 10MIL-20MIL .. 20MIL-30MIL ..
-    # select employees = 1-10 .. 10-20 ..
+    type_of_code = models.IntegerField(default=0)
+    code = models.IntegerField(default=0)
+    address = models.CharField(max_length=255)
+    turnover = models.IntegerField(default=0)
+    employees = models.IntegerField(default=0)
     products = models.CharField(max_length=255)
+    sectors = models.CharField(max_length=255)
     BOM_position = models.CharField(max_length=255)
-    company_linkedin = models.URLField()
-    company_email = models.EmailField()
+    linkedin_company = models.URLField()
+    email_company = models.EmailField()
 
     #  LEARN !!
     @receiver(post_save, sender=User)

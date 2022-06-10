@@ -6,18 +6,39 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def clear(self):
+    def clean(self):
         cd = self.cleaned_data
         #  error checking here
         return cd
 
 
 class SignupForm(forms.Form):
-    username = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+    policy_agreement_check = forms.BooleanField()
 
-    def clear(self):
+    name = forms.CharField()
+    surname = forms.CharField()
+    username = forms.CharField()
+    prefix = forms.ChoiceField(choices=[('1', 'abc')])
+    number = forms.IntegerField()
+    linkedin_user = forms.URLField()
+    company = forms.CharField()
+    department = forms.ChoiceField(choices=[('1', 'abc')])
+    job_title = forms.CharField()
+
+    type_of_code = forms.ChoiceField(choices=[('1', 'abc')])
+    code = forms.IntegerField()
+    address = forms.CharField()
+    turnover = forms.ChoiceField(choices=[('1', 'abc')])
+    employees = forms.IntegerField()
+    products = forms.CharField()
+    sectors = forms.CharField()
+    BOM_position = forms.CharField()
+    linkedin_company = forms.URLField()
+    email_company = forms.EmailField()
+
+    def clean(self):
         cd = self.cleaned_data
         #  error checking here
         return cd

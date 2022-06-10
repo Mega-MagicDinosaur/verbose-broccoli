@@ -10,7 +10,14 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    {{ form }}
+    {% for field in form %}
+    {{ field.label_tag }} {{ field }} <br>
+    {% endfor %}
+
+    {% for field in form %}
+    {{ field.errors }}
+    {% endfor %}
+
     {% if exceptions.taken_username_exc == True %}
     <p>email already has an account!</p>
     {% endif %}

@@ -18,12 +18,35 @@ def signup_page(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
+            # GET ALL FIELDS
             password = form.cleaned_data['password']
             email = form.cleaned_data['email']
+
+            # CREATE NEW USER
             if not User.objects.filter(username=email):  # change to get
                 user = User.objects.create_user(username=email, password=password)  # EMAIL IS USED AS A USERNAME!!!
-                user.save()
+                user.profile.name = form.cleaned_data['name']
+                user.profile.surname = form.cleaned_data['surname']
+                user.profile.username = form.cleaned_data['username']
+                user.profile.prefix = form.cleaned_data['prefix']
+                user.profile.number = form.cleaned_data['number']
+                user.profile.linkedin_user = form.cleaned_data['linkedin_user']
+                user.profile.company = form.cleaned_data['company']
+                user.profile.department = form.cleaned_data['department']
+                user.profile.job_title = form.cleaned_data['job_title']
+
+                user.profile.type_of_code = form.cleaned_data['type_of_code']
+                user.profile.code = form.cleaned_data['code']
+                user.profile.address = form.cleaned_data['address']
+                user.profile.turnover = form.cleaned_data['turnover']
+                user.profile.employees = form.cleaned_data['employees']
+                user.profile.products = form.cleaned_data['products']
+                user.profile.sectors = form.cleaned_data['sectors']
+                user.profile.BOM_position = form.cleaned_data['BOM_position']
+                user.profile.linkedin_company = form.cleaned_data['linkedin_company']
+                user.profile.email_company = form.cleaned_data['email_company']
+
+                user.profile.save()
                 return redirect('login_page')
             else:
                 exceptions['taken_username_exc'] = True
