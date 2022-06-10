@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>welcome home {{ user.username }}!</p>
+<p>your password is {{user.password}}</p>
+<a href="{% url 'logout_page' %}">logout</a>
+</body>
+</html>

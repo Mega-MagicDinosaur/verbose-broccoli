@@ -1,0 +1,22 @@
+{% extends 'user/main.html' %}
+
+{% block title %}
+<title>log in</title>
+{% endblock %}
+
+{% block content %}
+<h1> log in </h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    Username: <input type="text" name="username"/><br>
+    Password: <input type="text" name="password"/><br>
+    {% if exceptions.empty_field_exc == True %} <p> one of the fields is empty! </p><br> {% endif %}
+    {% if exceptions.wrong_fields_exc == True %} <p> username or password are wrong! </p><br> {% endif %}
+    <input type="submit" value="Post"/>
+</form>
+
+<a href="{% url 'signup_page' %}"> don't have an account yet? </a>
+
+{% endblock %}
