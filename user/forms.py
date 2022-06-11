@@ -1,5 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
+from django.contrib import auth
 
 
 class LoginForm(forms.Form):
@@ -18,7 +18,17 @@ class SignupForm1(forms.Form):
 
     def clean(self):
         cd = self.cleaned_data
-        #  error checking here
+        password = cd.get('password')
+        symbols = {'~', '!', '?', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', ':', ',', '.', "'", '"'}
+        if len(password) < 8:
+            self.add_error('password', "password is too short")
+        if not any(char in symbols for char in password):
+            self.add_error('password', "password does not contain any special characters")
+        if not any(char.isdigit() for char in password):
+            self.add_error('password', "password does not contain any digit")
+        if not any(char.isalpha() for char in password):
+            self.add_error('password', "password does not contain any letter")
+
         return cd
 
 

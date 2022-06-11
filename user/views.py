@@ -1,10 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-
-# Create your views here.
 from django.views.decorators.csrf import csrf_protect
-
 from user.forms import *
 
 
@@ -32,28 +29,29 @@ def signup_page_1(request):
 
 
 def signup_page_2(request):
+    exceptions = {}
     form = SignupForm2(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             user = User.objects.get(username=request.session['email'])
-            user.profile.name = form.cleaned_data['name']
-            user.profile.surname = form.cleaned_data['surname']
-            user.profile.username = form.cleaned_data['username']
-            user.profile.prefix = form.cleaned_data['prefix']
-            user.profile.number = form.cleaned_data['number']
-            user.profile.linkedin_user = form.cleaned_data['linkedin_user']
-            user.profile.company = form.cleaned_data['company']
-            user.profile.department = form.cleaned_data['department']
-            user.profile.job_title = form.cleaned_data['job_title']
-            user.profile.save()
+            user.userprofile.name = form.cleaned_data['name']
+            user.userprofile.surname = form.cleaned_data['surname']
+            user.userprofile.username = form.cleaned_data['username']
+            user.userprofile.prefix = form.cleaned_data['prefix']
+            user.userprofile.number = form.cleaned_data['number']
+            user.userprofile.linkedin_user = form.cleaned_data['linkedin_user']
+            user.userprofile.company = form.cleaned_data['company']
+            user.userprofile.department = form.cleaned_data['department']
+            user.userprofile.job_title = form.cleaned_data['job_title']
+            user.userprofile.save()
             return redirect('signup_page_3')
 
-    context = {'form': form}
+    context = {'form': form, 'exceptions': exceptions}
     return render(request, 'user/signup.html', context)
 
 
 def signup_page_3(request):
-    exceptions = {'taken_username_exc': False}
+    exceptions = {}
     form = SignupForm3(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -71,7 +69,7 @@ def signup_page_3(request):
             user.companyprofile.save()
             return redirect('login_page')
 
-    context = {'form': form}
+    context = {'form': form, 'exceptions': exceptions}
     return render(request, 'user/signup.html', context)
 
 
