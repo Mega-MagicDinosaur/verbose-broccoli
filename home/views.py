@@ -12,6 +12,6 @@ def home_page(request, pk):
     user = User.objects.get(id=pk)
     context = {'user': user}
     if request.user.is_authenticated and request.user.id == pk:
-        return render(request, 'home/home.html', context)
+        return render(request, 'home/radar_view.html', context)
     else:
         return redirect('login_page')

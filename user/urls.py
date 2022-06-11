@@ -1,4 +1,6 @@
+from django.conf.urls.static import static
 from django.urls import path
+from project import settings
 from . import views
 
 urlpatterns = [
@@ -9,3 +11,5 @@ urlpatterns = [
     path('signup_2', views.signup_page_2, name='signup_page_2'),
     path('signup_3', views.signup_page_3, name='signup_page_3'),
 ]
+# static is to use only in debug!!
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

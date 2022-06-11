@@ -9,7 +9,6 @@
 
 <form action="" method="POST">
     {% csrf_token %}
-
     {% for field in form %}
     {{ field.label_tag }} {{ field }} <br>
     {% endfor %}
@@ -23,6 +22,8 @@
     {% endif %}
 
     <input type="submit" value="Post"/>
+
+    <a href="{% url 'index_page' %}" class="btn btn-primary">Delete</a>
 </form>
 
 <a href="{% url 'login_page' %}"> already have an account? </a>
