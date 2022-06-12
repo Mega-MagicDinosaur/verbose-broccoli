@@ -14,7 +14,7 @@
     <a href="{% url 'company_list_page' user.id %}" class="material-icons icon_content">list</a>
 </div>
 <div class="icon" id="account_settings_icon">
-    <a href="" class="material-icons icon_content">manage_accounts</a>
+    <a href="" class="material-icons-outlined icon_content">manage_accounts</a>
 </div>
 {% endblock %}
 
@@ -35,17 +35,15 @@
     </div>
 </div>
 <div id="center_view">
-    <nav class="circle-menu">
-        <div class="center"></div>
-        <ul>
-            <li><a href="#" class="icon-gist-secret"><span class="segment">prova</span></a></li>
-            <li><a href="#" class="icon-hubot">prova</a></li>
-            <li><a href="#" class="icon-hourglass">prova</a></li>
-            <li><a href="#" class="icon-light-bulb">prova</a></li>
-            <li><a href="#" class="icon-squirrel"><span class="segment">prova</span></a></li>
-            <li><a href="#" class="icon-law">prova</a></li>
-        </ul>
-    </nav>
+    <div id="round-menu">
+        <!-- <span><span></span></span> -->
+        <div class="wrap">
+          <a href="#" class="menu_item lateral"><span class="material-icons-outlined">trending_up</span></a>
+          <a href="#" class="menu_item lateral"><span class="material-icons">public</span></a>
+          <a href="#" class="menu_item lateral"><span class="material-icons-outlined">account_tree</span></a>
+          <a href="#" class="menu_item central"><img src="{% static 'img/krein_logo.png' %}"></a>
+        </div>
+    </div>
 </div>
 <div id="bottom_view">
     <button class="btn btn-primary" id="algorythm_button">NORDLYS ALGORYTHM</button>

@@ -19,11 +19,14 @@
     margin: 0px 0px 5vh 12px;
     padding: 8px;
 }
-.verticalnav_container .material-icons {
+.verticalnav_container .material-icons,
+.verticalnav_container .material-icons-outlined {
     font-size: 28px;
     color: #6A7FA4;
 }
-.verticalnav_container .material-icons:hover { text-decoration: none; }
+
+.verticalnav_container .material-icons:hover,
+.verticalnav_container .material-icons-outlined { text-decoration: none; }
 .verticalnav_container #selected_icon {
     border-radius: 25px 0px 0px 25px;
     background-color: #F5F6FB;

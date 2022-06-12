@@ -1,123 +1,80 @@
-.circle-menu {
+.radarview_container #center_view #round-menu {
+    top: 0px;
+    height: auto;
+}
+.radarview_container #center_view { height: auto; }
+.radarview_container #center_view .wrap{
+    width: 55vmin;
+    height: 55vmin;
+
+    transform: scale(.8) translateZ(0px);
+}
+.radarview_container #center_view a:hover img { opacity:1; }
+.radarview_container #center_view .menu_item {
+    position: absolute;
+    overflow: hidden;
+
+    width: 50%;
+    height: 50%;
+
+    background: #ffffff;
+    transition: background .5s;
+}
+.radarview_container #center_view .lateral:hover {
+    background: #F3F4F5;
+}
+.radarview_container #center_view .menu_item div {
+    height: 100%;
+
+    background-size: cover;
+    border-radius: inherit;
+}
+.radarview_container #center_view .menu_item:nth-child(1) {
+    border-radius: 40vmin 0 0 0;
+}
+.radarview_container #center_view .menu_item:nth-child(1) span {
     position: relative;
-    width: 400px;
-    height: 400px;
-    margin: 50px auto;   
-    background: white;
-    box-shadow: 0 0 3px #ccc;
+    font-size: 6vmin;
+    top: 31%;
+    left: 31%;
 }
+.radarview_container #center_view .menu_item:nth-child(2) {
+    border-radius: 0 40vmin 40vmin 0;
+    height: 100%;
+    left: 50%;
+}
+.radarview_container #center_view .menu_item:nth-child(2) span {
+    position: relative;
+    font-size: 6vmin;
+    top: 45%;
+    left: 70%;
+}
+.radarview_container #center_view .menu_item:nth-child(3) {
+    border-radius: 0 0 0 40vmin;
+    top: 50%;
+}
+.radarview_container #center_view .menu_item:nth-child(3) span {
+    position: relative;
+    font-size: 6vmin;
+    top: 45%;
+    left: 31%;
+}
+.radarview_container #center_view .central {
+    border-radius: 20vmin;
+    width: 55%;
+    height: 55%;
+    left: 22.5%;
+    top: 22.5%;
 
-.circle-menu ul {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    margin: 50px;
-    padding: 0;
-    list-style: none;
-    border-radius: 50%;                                   /*  THIS IS IMPORTANT  */
-    overflow: hidden;                                     /*  THIS IS IMPORTANT  */
+    box-shadow: 0 0 0 2.5vmin #E2E2E2;
 }
-
-.circle-menu .center{
-    position: absolute;
-    top: 195px;
-    left: 195px;
-    z-index: 1000;
-    border: 5px solid #34495e;
-    border-radius: 50%;
-    box-shadow: 0 0 3px #ccc;
+.radarview_container #center_view .central img {
+    opacity: .5;
+    transition:opacity .5s;
 }
-                         /* Make each list item right corner to center of the menu */
-.circle-menu li {
-    position: absolute;
-    top: -10px;                                            /*  THIS IS IMPORTANT  */
-    left: -10px;                                           /*  THIS IS IMPORTANT  */ 
-    width: 160px;
-    height: 160px;
-    transform-origin: 100% 100%;                           /*  THIS IS IMPORTANT  */
-    overflow: hidden;                                      /*  THIS IS IMPORTANT  */
-}
-                            /*   rotate deg = 360deg / count-of-item  (360/6=60deg);
-                                 skew deg = 90deg - [rotate deg] 
-                                   each li rotate deg = rotate deg * li-number;
-                            */
-.circle-menu li:nth-child(1) {
-    transform: rotate(0deg) skew(30deg);
-}
-.circle-menu li:nth-child(2) {
-     transform: rotate(60deg) skew(30deg);
-}
-.circle-menu li:nth-child(3) {
-    transform: rotate(120deg) skew(30deg);
-}
-.circle-menu li:nth-child(4) {
-    transform: rotate(180deg) skew(30deg);
-}
-.circle-menu li:nth-child(5) {
-    transform: rotate(240deg) skew(30deg);
-}
-.circle-menu li:nth-child(6) {
-    transform: rotate(300deg) skew(30deg);
-}
-                                                          /* backflip content */
-.circle-menu li a{
+.radarview_container #center_view .central img {
     display: block;
-    width: 160px;
-    height: 160px;
-    margin-top: 40px;                                     /*  THIS IS IMPORTANT  */ 
-    margin-left: 40px;                                    /*  THIS IS IMPORTANT  */ 
-    background: rgba(241, 196, 15, 0.5) url('monitor-4x.png') no-repeat 50% 40%;
-    transform: skew(-30deg) rotate(-60deg);               /*  THIS IS IMPORTANT  */ 
-    transition: background-color 0.5s;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
-
-.circle-menu li:nth-child(even) a {
-    background-color: rgba(241, 196, 15, 0.75);
-}
-
-.circle-menu li a:hover {
-    background-color: rgba(241, 196, 15, 1);
-}
-
-/* Icons */
-
-[class^="icon-"]:before {
-    position: absolute;
-    font-size: 3em;
-    bottom: 50%;
-    right: 35%;
-    color: rgba(240, 240, 240, 1);
-}
-
-
-/* segments */
-.segment {
-  display: block;
-  background: blue;
-  width: 300px;
-  height: 300px;
-  border-radius: 300px;
-  position: absolute;
-  bottom: -150px;
-  left: -70px;
-  box-sizing: border-box;
-  margin-left: -3px;
-  margin-bottom: 5px;
-  transform: translateY(0px); /* 50% or 150px to set sement to 0 */
-}
-
-/*
-to move segment out of the pie you should do one of the folliwing steps:
-  1.
-    transform: translate(50px, 50px) rotate(240deg) skew(30deg); // move by translate
-    position: fixed;
-  2. (preferable way)
-    ul { overflow: visible } // do not overflow li on moving outside of the pie
-    ul li { margin-top: 0px; // move by margin top
-    ul li a { background: none !important; }  // no background for not to see uncutted parts
-
-to place segments correctly:
-  1st segment takes 100% (translateY(0)) // 100 - 0 = 100px
-  middle segment takes part which over the next segment (translateY(100px)) // 140 - 100 = 40px
-  last segment represents a start segment from center of the pie translateY(140px)  // 10px
-*/
