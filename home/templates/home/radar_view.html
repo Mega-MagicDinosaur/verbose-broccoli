@@ -12,14 +12,28 @@
     </div>
 
     <div id="filters_view">
-        <h1>FILTERS VIEW</h1>
+        <button class="material-icons" id="tune_button">tune</button>
+        <div id="active_filters">
+            <span>Active Filters<br> <b><h3>1/6</h3></b></span><!-- CHANGE LATER !! -->
+        </div>
+        <a class="btn btn-primary" id="save_search_button" href="" role="button">Save Search</a>
     </div>
 </div>
 <div id="center_view">
-    <h1>CENTER VIEW</h1>
+    <nav class="circle-menu">
+        <div class="center"></div>
+        <ul>
+            <li><a href="#" class="icon-gist-secret"><span class="segment"></span></a></li>
+            <li><a href="#" class="icon-hubot"></a></li>
+            <li><a href="#" class="icon-hourglass"></a></li>
+            <li><a href="#" class="icon-light-bulb"></a></li>
+            <li><a href="#" class="icon-squirrel"><span class="segment"></span></a></li>
+            <li><a href="#" class="icon-law"></a></li>
+        </ul>
+    </nav>
 </div>
 <div id="bottom_view">
-    <button>NORDLYS ALGORYTHM</button>
-    <button>SEARCH</button>
+    <button class="btn btn-primary" id="algorythm_button">NORDLYS ALGORYTHM</button>
+    <button class="btn btn-primary" id="search_button">SEARCH</button>
 </div>
 {% endblock %}

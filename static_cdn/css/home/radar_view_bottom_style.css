@@ -1,0 +1,32 @@
+.radarview_container #bottom_view {
+    display: inherit;
+    margin-top: auto;
+}
+.radarview_container #algorythm_button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+
+    margin: 0px 0px 30px 30px;
+    padding: 10px;
+
+    color: #ffffff;
+    background-color: #4E8CFC;
+
+    border: none;
+    border-radius: 9px;
+}
+.radarview_container #search_button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+
+    margin: 0px 30px 30px 0px;
+    padding: 10px;
+
+    color: #ffffff;
+    background-color: #4E8CFC;
+
+    border: none;
+    border-radius: 9px;
+
+    margin-left: auto;
+}
