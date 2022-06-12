@@ -1,0 +1,14 @@
+/* IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/* HTML */
+body {
+    background-color: #E2E2E2;
+}
+
+/* RADAR VIEW */
+.radarview_container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
