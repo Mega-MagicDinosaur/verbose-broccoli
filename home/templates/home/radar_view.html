@@ -1,10 +1,25 @@
 {% extends 'home/home.html' %}
+{% load static %}
 
 {% block title %}
 <title> radar view </title>
 {% endblock %}
 
-{% block radarview %}
+{% block verticalnav %}
+<img src="{% static '/img/krein_logo.png' %}" alt="logo" id="img_logo">
+<div class="icon" id="selected_icon">
+    <a href="" class="material-icons icon_content" id="selected_icon_content">radar</a>
+</div>
+<div class="icon">
+    <a href="{% url 'company_list_page' user.id %}" class="material-icons icon_content">list</a>
+</div>
+<div class="icon" id="account_settings_icon">
+    <a href="" class="material-icons icon_content">manage_accounts</a>
+</div>
+{% endblock %}
+
+
+{% block content %}
 <div id="top_view">
     <div id="title_view">
         <h2>Radar View</h2>
@@ -12,23 +27,23 @@
     </div>
 
     <div id="filters_view">
-        <button class="material-icons" id="tune_button">tune</button>
+        <button class="btn btn-primary material-icons" id="tune_button">tune</button>
         <div id="active_filters">
             <span>Active Filters<br> <b><h3>1/6</h3></b></span><!-- CHANGE LATER !! -->
         </div>
-        <a class="btn btn-primary" id="save_search_button" href="" role="button">Save Search</a>
+        <button class="btn btn-primary" id="save_search_button" href="" role="button">Save Search</button>
     </div>
 </div>
 <div id="center_view">
     <nav class="circle-menu">
         <div class="center"></div>
         <ul>
-            <li><a href="#" class="icon-gist-secret"><span class="segment"></span></a></li>
-            <li><a href="#" class="icon-hubot"></a></li>
-            <li><a href="#" class="icon-hourglass"></a></li>
-            <li><a href="#" class="icon-light-bulb"></a></li>
-            <li><a href="#" class="icon-squirrel"><span class="segment"></span></a></li>
-            <li><a href="#" class="icon-law"></a></li>
+            <li><a href="#" class="icon-gist-secret"><span class="segment">prova</span></a></li>
+            <li><a href="#" class="icon-hubot">prova</a></li>
+            <li><a href="#" class="icon-hourglass">prova</a></li>
+            <li><a href="#" class="icon-light-bulb">prova</a></li>
+            <li><a href="#" class="icon-squirrel"><span class="segment">prova</span></a></li>
+            <li><a href="#" class="icon-law">prova</a></li>
         </ul>
     </nav>
 </div>

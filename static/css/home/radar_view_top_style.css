@@ -22,17 +22,17 @@
     box-shadow: 2px 4px 8px #C4C4DA;
 }
 .radarview_container #top_view #tune_button {
-    font-size: 28px;
+    font-size: 24px;
 
     border: none;
-    border-radius: 9px;
+    border-radius: 12px;
 
     color: #4E8CFC;
     background-color: #ffffff;
     box-shadow: 1px 2px 4px #C4C4DA;
 
-    margin: 0px 20px 10px 0px;
-    padding: 8px;
+    margin: 0px 20px 20px 0px;
+    padding: 0px 12px;
 }
 .radarview_container #top_view #active_filters {
     font-family: 'Montserrat', sans-serif;

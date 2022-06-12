@@ -8,19 +8,17 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/home/home_style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/home/vertical_nav_style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/home/radar_view_top_style.css' %}">
-    <!--<link rel="stylesheet" type="text/css" href="{% static '/css/home/radar_view_center_style.css' %}"> -->
+    <!--<link rel="stylesheet" type="text/css" href="{% static '/css/home/radar_view_center_style.css' %}">-->
     <link rel="stylesheet" type="text/css" href="{% static '/css/home/radar_view_bottom_style.css' %}">
     <meta charset="UTF-8">
     {% block title %}{% endblock %}
 </head>
 
 <body>
-    <div class="verticalnav_container">{% include "home/vertical_nav.html" %}</div>
+    <div class="verticalnav_container">{% block verticalnav %}{% endblock %}</div>
+    <div class="radarview_container">{% block content %}{% endblock %}</div>
 
-    <div class="radarview_container">{% block radarview %}{% endblock %}</div>
-
-    <br>
-    <a href="{% url 'logout_page' %}">logout</a>
+    <!-- <a href="{% url 'logout_page' %}">logout</a> -->
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
