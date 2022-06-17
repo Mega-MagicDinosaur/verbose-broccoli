@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib import auth
 
+from user.models import PrefixModel
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField()
@@ -36,7 +38,8 @@ class SignupForm2(forms.Form):
     name = forms.CharField()
     surname = forms.CharField()
     username = forms.CharField()
-    prefix = forms.ChoiceField(choices=[('1', 'abc')])
+    prefix = forms.ChoiceField(choices=('39', '39'))
+    # prefix = forms.ModelChoiceField(queryset=PrefixModel.objects.all(), to_field_name='prefix')
     number = forms.IntegerField()
     linkedin_user = forms.URLField()
     company = forms.CharField()
