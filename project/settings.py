@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'user',
+    'webpack_loader',  # frontend loader
 ]
 
 MIDDLEWARE = [
