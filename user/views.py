@@ -25,7 +25,7 @@ def signup_page_1(request):
             else:
                 exceptions['taken_username_exc'] = True
     context = {'form': form, 'exceptions': exceptions}
-    return render(request, 'user/signup.html', context)
+    return render(request, 'user/signup1.html', context)
 
 
 def signup_page_2(request):
@@ -47,7 +47,7 @@ def signup_page_2(request):
             return redirect('signup_page_3')
 
     context = {'form': form, 'exceptions': exceptions}
-    return render(request, 'user/signup.html', context)
+    return render(request, 'user/signup2.html', context)
 
 
 def signup_page_3(request):
@@ -70,7 +70,7 @@ def signup_page_3(request):
             return redirect('login_page')
 
     context = {'form': form, 'exceptions': exceptions}
-    return render(request, 'user/signup.html', context)
+    return render(request, 'user/signup3.html', context)
 
 
 @csrf_protect

@@ -1,0 +1,260 @@
+{% load static %}
+
+<html>
+<head>
+    <link rel="stylesheet" href="stile3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'user/css/signup3_style.css' %}">
+
+</head>
+
+
+<body style="background-color: black;">
+<div>
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
+        <div class="circle">1</div>
+        <div class="circle">2</div>
+        <div class="circle">3</div>
+    </div>
+</div>
+
+<div class="container" style="padding-top:15px">
+    <div class="centre">
+        <div class="mycont">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="inputName" class="form-label"><b>Type of code</b></label>
+                    <select id="inputState" class="boxs6">
+                        <option selected>Select type of code</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputJob" class="form-label"><b>Code</b></label>
+                    <input type="Name" class="boxs6" id="inputJob">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputProfile" class="form-label"><b>Address</b></label>
+                    <input type="text" class="boxs12" id="inputProfile">
+                </div>
+            </div>
+
+            <div class="row rowstxt">
+                <div class="col-md-6">
+                    <label for="prim" class="form-label"><b>Turnover</b></label>
+                    <div class="slotainer">
+                        <button onclick="change(1, 1)" class="slots" id="prim"><<</button>
+                        <p id="first" class="slide">50</p>
+                        <button onclick="change(1, 2)" class="slots">>></button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="sec" class="form-label"><b>Employees</b></label>
+                    <div class="slotainer">
+                        <button onclick="change(2, 1)" class="slots" id="sec"><<</button>
+                        <p id="second">900</p>
+                        <button onclick="change(2, 2)" class="slots">>></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row rowstxt">
+                <form autocomplete="off">
+                    <div class="autocomplete col-12" style="width:420px;">
+                        <label for="inputJob" class="form-label"><b>Products</b></label>
+                        <input class="inputc" id="myInput" type="text" name="myCountry" placeholder="Products">
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputProfile" class="form-label"><b>Sectors</b></label>
+                    <input type="text" class="boxs12" id="inputProfile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputCompany" class="form-label"><b>BOM position</b></label>
+                    <input type="text" class="boxs12" id="inputCompany">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputProfile" class="form-label"><b>Company linkedin profile</b></label>
+                    <input type="text" class="boxs12" id="inputProfile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputCompany" class="form-label"><b>Company e-mail</b></label>
+                    <input type="text" class="boxs12" id="inputCompany">
+                </div>
+            </div>
+            <div class="container">
+                <div class="col-md-12">
+
+                    <div class="btalin">
+                        <button type="button" class="bttn1">SING UP</button>
+                        <a href="altro2.html">
+                            <button type="button" class="btn-outline-secondary bttn2">BACK</button>
+                        </a>
+                    </div>
+
+
+                    <h1 class="utext">Already have an account? <a href="altrowb.html">Sing in.</a></h1>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const progress = document.getElementById("progress");
+    const stepCircles = document.querySelectorAll(".circle");
+    let currentActive = 1;
+    
+    update(3);
+    
+    function update(currentActive) {
+      stepCircles.forEach((circle, i) => {
+        if (i < currentActive) {
+          circle.classList.add("active");
+        } else {
+          circle.classList.remove("active");
+        }
+      });
+    
+      const activeCircles = document.querySelectorAll(".active");
+      progress.style.width =
+        ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";
+    }
+
+  var slot1 = ["40", "50", "60" ]
+  var slot2 = ["600", "900", "1200" ]
+  var index = 1
+  var index2 = 1
+  const max=2
+  const max2=2
+
+
+
+
+  function change(Nslot, lato){
+    if(Nslot==1&&lato==1){
+      if(index==0){}
+      else{
+      index=index-1;
+      document.getElementById("first").innerHTML = "";
+      document.getElementById("first").innerHTML = slot1[index];
+      }
+    }
+    
+    if(Nslot==1&&lato==2){
+      if(index==max){}
+      else{
+        index=index+1
+        document.getElementById("first").innerHTML = slot1[index];
+      }
+    }
+    if(Nslot==2&&lato==1){
+      if(index2==0){}
+      else{
+      index2=index2-1;
+      document.getElementById("second").innerHTML = slot2[index2];
+      }
+    }
+    if(Nslot==2&&lato==2){
+      if(index2==max2){}
+      else{
+        index2=index2+1
+        document.getElementById("second").innerHTML = slot2[index2];
+      }
+    }
+
+
+
+  }
+      function autocomplete(inp, arr) {
+        var currentFocus;
+        inp.addEventListener("input", function(e) {
+            var a, b, i, val = this.value;
+            closeAllLists();
+            if (!val) { return false;}
+            currentFocus = -1;
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            this.parentNode.appendChild(a);
+            for (i = 0; i < arr.length; i++) {              
+              if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                b = document.createElement("DIV");
+                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                b.innerHTML += arr[i].substr(val.length);
+                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.addEventListener("click", function(e) {
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    closeAllLists();
+                });
+                a.appendChild(b);
+              }
+            }
+        });
+        inp.addEventListener("keydown", function(e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+              currentFocus++;
+              addActive(x);
+            } else if (e.keyCode == 38) {
+              currentFocus--;
+              addActive(x);
+            } else if (e.keyCode == 13) {
+              e.preventDefault();
+              if (currentFocus > -1) {
+                if (x) x[currentFocus].click();
+              }
+            }
+        });
+        function addActive(x) {
+          if (!x) return false;
+          removeActive(x);
+          if (currentFocus >= x.length) currentFocus = 0;
+          if (currentFocus < 0) currentFocus = (x.length - 1);
+          x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+          for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+          }
+        }
+        function closeAllLists(elmnt) {
+          var x = document.getElementsByClassName("autocomplete-items");
+          for (var i = 0; i < x.length; i++) {
+            if (elmnt != x[i] && elmnt != inp) {
+              x[i].parentNode.removeChild(x[i]);
+            }
+          }
+        }
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+      }
+      
+      var products = ["aa","aaa","aaaa","aaaaa","a","aab", "aaaaaaaaaa", "aaaaaaaaaaaaaaaaaaa", "bb", "cc"] 
+      autocomplete(document.getElementById("myInput"), products);
+      
+
+      
+      
+
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@300&display=swap');
+ 
+
+.container {
+    position: relative;
+    padding-top: 100px;
+}
+
+.centre {
+  padding-top: 30px;
+  width: 442px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  justify-content: center;
+  
+  
+}
+
+.btext{
+    font-size: 35px;
+    text-align: center;
+    padding-bottom: 15px;
+    color: #17294A; 
+}
+
+.lmtext{
+    padding-top: 10px;
+    font-size: 9px;
+    padding-left: 51px;
+    color: #435176;
+     
+}
+
+
+.cb{
+    padding-top: 25px;
+    text-align: left;
+
+}
+
+.tc{
+    padding-top: 25px;
+    text-align: left;
+    font-size: 10px;
+}
+
+.row{
+    justify-content: center;
+
+}
+
+
+.font{
+
+    box-sizing: border-box;
+    width: 341px;
+    height: 34px;
+    border: 1px solid rgba(78, 140, 252, 0.35);
+    border-radius: 7px;
+    padding-left: 5px;
+    font-size: 12px;
+  }
+
+
+.bttn1{
+    text-align: center;
+    padding: 10px 40px;
+    border-radius: 8px;
+    width: 40%;
+    
+    transition-duration: 0.5s;
+    
+    
+    border: none;
+    color: white;
+    background-color: black;
+}
+.bttn1:hover {
+  background-color: #4DCB20;
+  color: white;
+}
+
+
+.btalin{
+    text-align: center;
+    padding-top: 60px;
+    font-size: 14px;
+}
+
+.oneb{
+    background-color:"#4CAF50";
+    
+}
+
+.utext{
+    font-size: 20px;
+    padding-top: 25px;
+    text-align: center;
+
+    font-family: 'Ubuntu', sans-serif;
+    padding-bottom: 30px
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+
+
+
+
+* {
+  top: 10px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: #4DCB20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

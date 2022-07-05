@@ -1,0 +1,262 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@300&display=swap');
+ 
+
+
+
+.centre {
+  width: 430px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  padding-left: 3px;;
+}
+
+.btext{
+    font-size: 25px;
+    text-align: center;
+    padding-top: 50px;
+
+
+    color: #17294A;
+    
+       
+}
+
+.lmtext{
+    padding-top: 10px;
+    font-size: 9px;
+    text-align: left;
+    padding-left: 45px;
+
+    color: #435176;
+}
+
+
+.cb{
+    padding-top: 25px;
+    text-align: left;
+}
+
+.tc{
+
+  position: absolute;
+  padding-left: 33px;
+  padding-top: 407px;
+}
+
+
+.row{
+  justify-content: center;
+}
+
+.rows{
+  padding-left: 62px;
+  padding-right: 50px;
+  font-size: 9px;
+  padding-top: 30px;
+}
+
+.font{
+
+  box-sizing: border-box;
+  width: 341px;
+  height: 34px;
+  left: 228px;
+  top: 104px;
+  border: 1px solid rgba(78, 140, 252, 0.35);
+  border-radius: 7px;
+  padding-left: 4px;
+  font-size: 12px;
+}
+
+.bttn1{
+    
+    text-align: center;
+    padding: 10px 40px;
+    border-radius: 8px;
+    width: 30%;
+    overflow: hidden;
+
+    transition-duration: 0.5s;    
+    border: none;
+    color: white;
+    background-color: black;
+}
+.bttn1:hover {
+  background-color: #4DCB20;
+  color: white;
+}
+
+.bttn2{
+    
+    text-align: center;
+    padding: 10px 40px;
+    border-radius: 8px;
+    width: 30%;
+
+    transition-duration: 0.5s;
+    color: black;
+    background-color: ghostwhite;
+}
+.bttn2:hover {
+  background-color: lightgrey;
+  
+}
+
+.btalin{
+    text-align: center;
+    padding-top: 25px;
+    font-size: 14px;
+}
+
+.oneb{
+    background-color:"#4CAF50";
+    
+}
+
+.utext{
+    font-size: 20px;
+    padding-top: 25px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+
+
+
+
+
+:root {
+  --line-border-fill: #3498db;
+  --line-border-empty: #e0e0e0;
+  --numbers-color-empty: #999;
+  --numbers-color-fill: #fff;
+}
+
+
+* {
+  top: 10px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: #F3F4F6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+
+}
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-container::before {
+  content: "";
+  background: var(--line-border-empty);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  max-width: 100%;
+  width: 472px;
+}
+
+.progress {
+  background: var(--line-border-fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 0%;
+  z-index: -1;
+  transition: 0.4s ease;
+}
+
+.circle {
+  font-size: 18px;
+  background: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line-border-empty);
+  transition: .4s ease;
+}
+
+.circle.active {
+  border-color: var(--line-border-fill);
+  background: var(--line-border-fill);
+  color: var(--numbers-color-fill);
+}
+
+
+#message {
+  display:block;
+  background: #fff;
+  color: gray;
+  position: relative;
+  padding-left: 20px;
+ 
+}
+
+#message h1 {
+  padding-right: 15px;
+  font-size: 8px;
+}
+
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -5px;
+  content: "✔";
+}
+
+.invalid {
+  color: grey;
+}
+
+.invalid:before {
+  position: relative;
+ 
+  left: -5px;
+
+}
+
+    
+
