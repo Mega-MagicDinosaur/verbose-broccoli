@@ -22,85 +22,83 @@
 <div class="centre">
     <div class="mycont">
         <h1 class="btext"><b>Sing-in</b></h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="inputName"><b>Name</b></label>
 
-        <div class="row">
-            <div class="col-md-6">
-                <label for="inputName"><b>Name</b></label>
-
-                <input type="Name" class="boxs6" id="inputName">
-            </div>
-            <div class="col-md-6">
-                <label for="inputSurname"><b>Surname</b></label>
-
-                <input type="Name" class="boxs6" id="inputSurname">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-
-                <label for="inputUsername"><b>Username</b></label>
-
-                <input type="Name" class="boxs6" id="inputUsername">
-
-            </div>
-            <div class="col-md-6">
-                <label for="inputState"><b>Prefix and phone-number</b></label>
-
-                <select id="inputState" class="stateb">
-                    <option selected>...</option>
-                    <option>...</option>
-                </select>
-                <input type="Name" class="boxs4" id="inputphone">
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <label for="inputProfile"><b>Linkedin profile</b></label>
-                <input type="text" class="boxs12" id="inputProfile">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label for="inputCompany"><b>Company</b></label>
-                <input type="text" class="boxs12" id="inputCompany">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label for="inputName"><b>Department</b></label>
-                <select id="inputState" class="boxs6">
-                    <option selected>Select department</option>
-                    <option>...</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="inputJob"><b>Job title</b></label>
-                <input type="Name" class="boxs6" id="inputJob">
-            </div>
-        </div>
-        <div class="container">
-            <div class="col-md-12">
-
-                <div class="btalin">
-
-                    <a href="altro3.html">
-                        <button type="button" class="bttn1">NEXT</button>
-                    </a>
-                    <a href="altro.html">
-                        <button type="button" class="btn-outline-secondary bttn2">BACK</button>
-                    </a>
+                    <input name="name" type="Name" class="boxs6" id="inputName">
                 </div>
+                <div class="col-md-6">
+                    <label for="inputSurname"><b>Surname</b></label>
 
-
-                <h1 class="utext">Already have an account? <a href="altrowb.html">Sing in.</a></h1>
-
-
+                    <input name="surname" type="Name" class="boxs6" id="inputSurname">
+                </div>
             </div>
-        </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <label for="inputUsername"><b>Username</b></label>
+
+                    <input name="username" type="Name" class="boxs6" id="inputUsername">
+
+                </div>
+                <div class="col-md-6">
+                    <label for="inputState"><b>Prefix and phone-number</b></label>
+
+                    <select name="phone_prefix" id="inputState" class="stateb">
+                        <option selected>39</option>
+                        <option>21</option>
+                    </select>
+                    <input name="phone_number" type="number" class="boxs4" id="inputphone">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputProfile"><b>Linkedin profile</b></label>
+                    <input name="linkedin_profile" type="text" class="boxs12" id="inputProfile">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="inputCompany"><b>Company</b></label>
+                    <input name="company" type="text" class="boxs12" id="inputCompany">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="inputName"><b>Department</b></label>
+                    <select name="department" id="inputState" class="boxs6">
+                        <option selected>Select department</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputJob"><b>Job title</b></label>
+                    <input name="job_title" type="Name" class="boxs6" id="inputJob">
+                </div>
+            </div>
+            {% if exceptions.unfilled_form_exc == True %}
+            <p class="text-sm-center text-danger mt-2">you have to fill the whole form</p>
+            {% endif %}
+            <div class="container">
+                <div class="col-md-12">
+
+                    <div class="btalin">
+                        <input type="submit" class="bttn1" value="NEXT">
+                        <a href="{% url 'signup_page_1' %}">
+                            <button type="button" class="btn-outline-secondary bttn2">BACK</button>
+                        </a>
+                    </div>
+                    <h1 class="utext">Already have an account? <a href="{% url 'login_page' %}">Sing in.</a></h1>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -128,6 +126,10 @@
       progress.style.width =
         ((activeCircles.length - 1) / (stepCircles.length - 1)) * 100 + "%";
     }
+
+
+
+
 
 </script>
 </body>

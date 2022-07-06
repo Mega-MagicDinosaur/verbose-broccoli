@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'user/css/signup3_style.css' %}">
-
 </head>
 
 
@@ -23,97 +22,107 @@
 
 <div class="container" style="padding-top:15px">
     <div class="centre">
-        <div class="mycont">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="inputName" class="form-label"><b>Type of code</b></label>
-                    <select id="inputState" class="boxs6">
-                        <option selected>Select type of code</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label for="inputJob" class="form-label"><b>Code</b></label>
-                    <input type="Name" class="boxs6" id="inputJob">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="inputProfile" class="form-label"><b>Address</b></label>
-                    <input type="text" class="boxs12" id="inputProfile">
-                </div>
-            </div>
-
-            <div class="row rowstxt">
-                <div class="col-md-6">
-                    <label for="prim" class="form-label"><b>Turnover</b></label>
-                    <div class="slotainer">
-                        <button onclick="change(1, 1)" class="slots" id="prim"><<</button>
-                        <p id="first" class="slide">50</p>
-                        <button onclick="change(1, 2)" class="slots">>></button>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mycont">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="inputName" class="form-label"><b>Type of code</b></label>
+                        <select name="type_of_code" id="inputState" class="boxs6">
+                            <option selected>Select type of code</option>
+                            <option>12</option>
+                            <option>24</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputJob" class="form-label"><b>Code</b></label>
+                        <input name="code" type="Name" class="boxs6" id="inputJob">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="sec" class="form-label"><b>Employees</b></label>
-                    <div class="slotainer">
-                        <button onclick="change(2, 1)" class="slots" id="sec"><<</button>
-                        <p id="second">900</p>
-                        <button onclick="change(2, 2)" class="slots">>></button>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputProfile" class="form-label"><b>Address</b></label>
+                        <input name="address" type="text" class="boxs12" id="inputProfile">
+                    </div>
+                </div>
+
+                <div class="row rowstxt">
+                    <div class="col-md-6">
+                        <label for="prim" class="form-label"><b>Turnover</b></label>
+                        <input name="turnover" type="text" class="boxs12" id="inputProfile">
+                        <!-- change later i guess
+                        <div class="slotainer">
+                            <button onclick="change(1, 1)" class="slots" id="prim"><<</button>
+                            <p id="first" class="slide">50</p>
+                            <button onclick="change(1, 2)" class="slots">>></button>
+                        </div>
+                        -->
+                    </div>
+
+                </div>
+                <div class="row rowstxt">
+                    <div class="col-md-6">
+                        <label for="sec" class="form-label"><b>Employees</b></label>
+                        <input name="employees" type="text" class="boxs12" id="inputProfile">
+                        <!-- here too
+                        <div class="slotainer">
+                            <button onclick="change(2, 1)" class="slots" id="sec"><<</button>
+                            <p id="second">900</p>
+                            <button onclick="change(2, 2)" class="slots">>></button>
+                        </div>
+                        -->
+                    </div>
+                </div>
+
+                <div class="row rowstxt">
+                    <form autocomplete="off">
+                        <div class="autocomplete col-12" style="width: 420px;">
+                            <label for="inputJob" class="form-label"><b>Products</b></label>
+                            <input name="products" class="inputc" id="myInput" type="text" placeholder="Products">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputProfile" class="form-label"><b>Sectors</b></label>
+                        <input name="sectors" type="text" class="boxs12" id="inputProfile">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputCompany" class="form-label"><b>BOM position</b></label>
+                        <input name="bom_position" type="text" class="boxs12" id="inputCompany">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputProfile" class="form-label"><b>Company linkedin profile</b></label>
+                        <input name="company_linkedin_profile" type="text" class="boxs12" id="inputProfile">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="inputCompany" class="form-label"><b>Company e-mail</b></label>
+                        <input name="company_email" type="text" class="boxs12" id="inputCompany">
+                    </div>
+                </div>
+                {% if exceptions.unfilled_form_exc == True %}
+                <p class="text-sm-center text-danger mt-2">you have to fill the whole form</p>
+                {% endif %}
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="btalin">
+                            <input type="submit" class="bttn1" value="SIGN UP">
+                            <a href="{% url 'signup_page_2' %}">
+                                <button type="button" class="btn-outline-secondary bttn2">BACK</button>
+                            </a>
+                        </div>
+                        <h1 class="utext">Already have an account? <a href="{% url 'login_page' %}">Sing in.</a></h1>
                     </div>
                 </div>
             </div>
-
-            <div class="row rowstxt">
-                <form autocomplete="off">
-                    <div class="autocomplete col-12" style="width:420px;">
-                        <label for="inputJob" class="form-label"><b>Products</b></label>
-                        <input class="inputc" id="myInput" type="text" name="myCountry" placeholder="Products">
-
-                    </div>
-
-                </form>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="inputProfile" class="form-label"><b>Sectors</b></label>
-                    <input type="text" class="boxs12" id="inputProfile">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="inputCompany" class="form-label"><b>BOM position</b></label>
-                    <input type="text" class="boxs12" id="inputCompany">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="inputProfile" class="form-label"><b>Company linkedin profile</b></label>
-                    <input type="text" class="boxs12" id="inputProfile">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <label for="inputCompany" class="form-label"><b>Company e-mail</b></label>
-                    <input type="text" class="boxs12" id="inputCompany">
-                </div>
-            </div>
-            <div class="container">
-                <div class="col-md-12">
-
-                    <div class="btalin">
-                        <button type="button" class="bttn1">SING UP</button>
-                        <a href="altro2.html">
-                            <button type="button" class="btn-outline-secondary bttn2">BACK</button>
-                        </a>
-                    </div>
-
-
-                    <h1 class="utext">Already have an account? <a href="altrowb.html">Sing in.</a></h1>
-
-
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 <script>
@@ -143,9 +152,6 @@
   var index2 = 1
   const max=2
   const max2=2
-
-
-
 
   function change(Nslot, lato){
     if(Nslot==1&&lato==1){
@@ -250,10 +256,6 @@
       
       var products = ["aa","aaa","aaaa","aaaaa","a","aab", "aaaaaaaaaa", "aaaaaaaaaaaaaaaaaaa", "bb", "cc"] 
       autocomplete(document.getElementById("myInput"), products);
-      
-
-      
-      
 
 </script>
 </body>

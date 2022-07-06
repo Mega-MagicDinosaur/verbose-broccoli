@@ -12,18 +12,29 @@
 <div class="container">
     <div class="centre">
         <h1 class="btext"><b>Welcome back!</b></h1>
-        <label for="wemail" class="form-label lmtext">Work email</label>
-        <div class="row">
-            <input type="user" class="font" id="wemail" placeholder="name@gmail.com">
-        </div>
-        <label for="pass" class="form-label lmtext">Password</label>
-        <div class="row">
-            <input type="password" class="font" id="pass">
-        </div>
-        <div class="btalin">
-            <button type="button" class=" bttn1">SING-IN</button>
-        </div>
-        <h1 class="utext">Don't have an account? <a href="altro.html">Sing up.</a></h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="wemail" class="form-label lmtext">Work email</label>
+            <div class="row">
+                <input name="email" type="user" class="font" id="wemail" placeholder="name@gmail.com">
+            </div>
+            <label for="pass" class="form-label lmtext">Password</label>
+            <div class="row">
+                <input name="password" type="password" class="font" id="pass">
+            </div>
+
+            <ul>
+                {% if exceptions.auth_failed_exc == True %}
+                <p class="text-sm-center text-danger mt-2">user authentication failed!</p>
+                {% endif %}
+            </ul>
+
+            <div class="btalin">
+                <input type="submit" class=" bttn1" value="SING-IN">
+            </div>
+        </form>
+
+        <h1 class="utext">Don't have an account? <a href="{% url 'signup_page_1' %}">Sing up.</a></h1>
     </div>
 </div>
 </body>

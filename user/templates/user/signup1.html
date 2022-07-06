@@ -21,51 +21,65 @@
     <div class="container">
         <div class="centre">
             <h1 class="btext"><b>Try Nordlys for free</b></h1>
-            <label for="wemail" class="form-label lmtext"><b>Work email</b></label>
-            <div class="row">
-                <input type="user" class="font" id="wemail" placeholder="name@gmail.com" required>
-            </div>
-            <label for="psw" class="form-label lmtext"><b>Password</b></label>
-            <div class="row">
-                <input type="password" class="font" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                       required>
-            </div>
-            <div id="message">
+            <form method="POST">
+                {% csrf_token %}
+
+                <label for="wemail" class="form-label lmtext"><b>Work email</b></label>
                 <div class="row">
-                    <h1 id="letter" class="invalid">At least 1 letter</h1>
-                    <h1 id="capital" class="invalid">At least 1 capital (uppercase) letter</h1>
+                    <input name="email" type="user" class="font" id="wemail" placeholder="name@gmail.com" required>
                 </div>
+                <label for="psw" class="form-label lmtext"><b>Password</b></label>
                 <div class="row">
-                    <h1 id="number" class="invalid">At least 1 number</h1>
-                    <h1 id="length" class="invalid">At least 8 characters</h1>
+                    <input name="password" type="password" class="font" id="psw"
+                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                 </div>
-            </div>
-            <label for="exampleFormControlInput1" class="form-label lmtext"><b>Confirm password</b></label>
-            <div class="row">
-                <input type="password" class="font" id="confirm" required>
-            </div>
-            <div class="row">
                 <div id="message">
-                    <h1 id="conf" class="invalid">Passwords don't match</h1>
+                    <div class="row">
+                        <h1 id="letter" class="invalid">At least 1 letter</h1>
+                        <h1 id="capital" class="invalid">At least 1 capital (uppercase) letter</h1>
+                    </div>
+                    <div class="row">
+                        <h1 id="number" class="invalid">At least 1 number</h1>
+                        <h1 id="length" class="invalid">At least 8 characters</h1>
+                    </div>
                 </div>
-            </div>
+                <label for="exampleFormControlInput1" class="form-label lmtext"><b>Confirm password</b></label>
+                <div class="row">
+                    <input name="password_confirmation" type="password" class="font" id="confirm" required>
+                </div>
+                <div class="row">
+                    <div id="message">
+                        <h1 id="conf" class="invalid">Passwords don't match</h1>
+                    </div>
+                </div>
 
-            <div class="tc">
-                <input class="check" type="checkbox" value="">
-            </div>
-            <div class="rows">
-                <p> I agree to receive information about products or services I may find beneficial and can change my
-                    mind at any time through the email I receive. By clicking below, I agree that the Terms of Service
-                    and Privacy Notice will govern the use of services I receive and personal data I provide
-                    respectively. </p>
-            </div>
+                <div class="tc">
+                    <input name="license_agreement" class="check" type="checkbox" value="">
+                </div>
+                <div class="rows">
+                    <p> I agree to receive information about products or services I may find beneficial and can change
+                        my
+                        mind at any time through the email I receive. By clicking below, I agree that the Terms of
+                        Service
+                        and Privacy Notice will govern the use of services I receive and personal data I provide
+                        respectively. </p>
+                </div>
 
-
-            <div class="btalin">
-                <a href="{% url 'signup_page_2' %}">
-                    <button type="button" class=" bttn1">NEXT</button>
-                </a>
-            </div>
+                <ul>
+                    {% if exceptions.taken_username_exc == True %}
+                    <p class="text-sm-center text-danger mt-2">email already has an account</p>
+                    {% endif %}
+                    {% if exceptions.password_validation_exc == True %}
+                    <p class="text-sm-center text-danger mt-2">password validation failed</p>
+                    {% endif %}
+                    {% if exceptions.license_agreement_exc == True %}
+                    <p class="text-sm-center text-danger mt-2">you have to agree to our license</p>
+                    {% endif %}
+                </ul>
+                <div class="btalin">
+                    <input type="submit" class="bttn1" value="next">
+                </div>
+            </form>
             <h1 class="utext">Already have an account? <a href="{% url 'login_page' %}">Sing in.</a></h1>
         </div>
     </div>
@@ -165,7 +179,9 @@ pswC.onkeyup = function() {
     confir.classList.add("invalid");
   }
 }
+
+
 </script>
 </body>
 
-</html>    
+</html>
